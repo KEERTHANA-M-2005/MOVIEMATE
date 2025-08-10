@@ -2,11 +2,13 @@ import React from 'react';
 
 function MovieCard({ movie, onFavorite }) {
   return (
-    <div style={{ border: '1px solid #ccc', padding: '10px' }}>
+    <div className="movie-card">
+      <img src={movie.Poster} alt={movie.Title} />
       <h3>{movie.Title}</h3>
-      <img src={movie.Poster} alt={movie.Title} style={{ width: '150px' }} />
-      <p>Year: {movie.Year}</p>
-      <button onClick={() => onFavorite(movie)}>Add to Favorites</button>
+      <p>{movie.Year}</p>
+      <button className="favorite-btn" onClick={() => onFavorite(movie)}>
+        ❤️ Favorite
+      </button>
     </div>
   );
 }
