@@ -14,11 +14,16 @@ function App() {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('light'); // 'light' or 'dark'
   const [recentSearches, setRecentSearches] = useState([]);
 
+  // Apply dark/light mode by adding/removing "dark-mode" class on <body>
   useEffect(() => {
-    document.body.setAttribute('data-theme', theme);
+    if (theme === 'dark') {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }, [theme]);
 
   const handleSearch = async (query) => {
@@ -54,8 +59,12 @@ function App() {
   };
 
   return (
-    <div className={`app ${theme}`}>
-      <Navbar theme={theme} setTheme={setTheme} />
+    <div className="app">
+      <Navbar 
+        theme={theme} 
+        setTheme={setTheme} // Pass toggle control to Navbar
+      />
+      
       <div className="container">
         <SearchBar onSearch={handleSearch} suggestions={recentSearches} />
 
@@ -73,7 +82,12 @@ function App() {
         </div>
 
         <Favorites favorites={favorites} />
-        <ToastContainer position="bottom-right" theme={theme} autoClose={2000} />
+
+        <ToastContainer 
+          position="bottom-right" 
+          theme={theme === 'dark' ? 'dark' : 'light'} 
+          autoClose={2000} 
+        />
       </div>
     </div>
   );
