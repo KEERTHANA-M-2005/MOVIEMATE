@@ -192,3 +192,38 @@ body.dark-mode {
     transform: translateY(0);
   }
 }
+/* Recent Searches */
+.recent-searches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 1rem auto;
+  padding: 0.5rem 0;
+  max-width: 320px;
+  justify-content: center;
+}
+
+.recent-searches h4 {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  color: var(--accent);
+}
+
+.recent-search-item {
+  background-color: var(--card-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.recent-search-item:hover {
+  background-color: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}

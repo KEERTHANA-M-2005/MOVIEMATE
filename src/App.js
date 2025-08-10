@@ -17,7 +17,7 @@ function App() {
   const [theme, setTheme] = useState('light'); // 'light' or 'dark'
   const [recentSearches, setRecentSearches] = useState([]);
 
-  // Apply dark/light mode by adding/removing "dark-mode" class on <body>
+  // Apply dark/light mode
   useEffect(() => {
     if (theme === 'dark') {
       document.body.classList.add('dark-mode');
@@ -25,6 +25,13 @@ function App() {
       document.body.classList.remove('dark-mode');
     }
   }, [theme]);
+
+  // Fetch random movies on first load
+  useEffect(() => {
+    const popularQueries = ["Avengers", "Batman", "Spiderman", "Harry Potter", "Star Wars", "Frozen", "Iron Man"];
+    const randomQuery = popularQueries[Math.floor(Math.random() * popularQueries.length)];
+    handleSearch(randomQuery);
+  }, []);
 
   const handleSearch = async (query) => {
     setLoading(true);
@@ -62,7 +69,7 @@ function App() {
     <div className="app">
       <Navbar 
         theme={theme} 
-        setTheme={setTheme} // Pass toggle control to Navbar
+        setTheme={setTheme} // toggle control
       />
       
       <div className="container">
